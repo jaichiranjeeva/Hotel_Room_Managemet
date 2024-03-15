@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+
+{% block body %}
+{% load static %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6" >
+        <div class="login" >
+            <div class="login-screen" style="background: linear-gradient(to right, #FFF, rgb(138, 135, 135));border: none;">
+                <div class="app-title">
+                    <h1 style="color:black;">New food details:</h1>
+                </div>
+                <form method="POST" action="" class="login-form form-inline">
+                  {% csrf_token %}
+                    {% for field in form %}
+                    <h5 class="form-labels">
+                    {{ field.label }}
+                    </h5>
+                    {{ field }}
+                    {% endfor %}
+                    <input class="btn mt-2" type="submit" value="select">
+                </form>
+            </div>        
+        </div>
+
+        </div>
+        <center>
+        
+    </center>
+    </div>
+      
+                
+    </div>
+
+    <script>
+
+    </script>
+{% endblock  %}

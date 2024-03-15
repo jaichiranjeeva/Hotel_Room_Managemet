@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<form action="{% url "saveEdits" %}" method="post" style="width: 70%;margin-left: 5%;margin-top: 4%;" >
+    <div class="title">
+      <!-- <i class="fas fa-pencil-alt"></i>  -->
+
+      <h2>Modify Booking Details</h2>
+    </div>
+    <div class="info">
+        <label for="column1">Room No.:</label><br>
+        <input type="text" id="rn" name="rn" value="{{  RoomN  }}"><br>
+
+        <!-- Column 2 -->
+        <label for="fd">From Date:</label><br>
+        <input type="text" id="fd" name="fd" value="{{ fd  }}"><br>
+
+        <!-- Column 3 -->
+        <label for="ft">From Time:</label><br>
+        <input type="text" id="ft" name="ft" value="{{  ft  }}"><br>
+
+        <!-- Column 4 -->
+        <label for="td">To Date:</label><br>
+        <input type="text" id="td" name="td" value="{{  td  }}"><br>
+
+        <!-- Column 5 -->
+        <label for="tt">Column 5:</label><br>
+        <input type="text" id="tt" name="tt" value="{{  tt  }}"><br>
+
+        <!-- Column 6 -->
+        <label for="Name">Name:</label><br>
+        <input type="text" id="name" name="name" value="{{Name}}"><br>
+
+        <!-- Column 7 -->
+        <label for="ph">Phone:</label><br>
+        <input type="text" id="ph" name="ph" value="{{ ph }}"><br>
+
+        <!-- Column 8 -->
+        <label for="email">Email:</label><br>
+        <input type="text" id="mail" name="mail" value="{{ Email}}"><br>
+
+    </div>
+    <button type="submit" value="submit">Update</button>
+  </form>
+{% endblock  %}

@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hotel Room Management</title>
+{% load static %}
+<style>
+/* Basic styling for the side nav bar */
+html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #eee;
+      }
+      body {
+      background: url("/uploads/media/default/0001/01/b5edc1bad4dc8c20291c8394527cb2c5b43ee13c.jpeg") no-repeat center;
+      background-size: cover;
+      }
+      h1, h2 {
+      text-transform: uppercase;
+      font-weight: 400;
+      }
+      h2 {
+      margin: 0 0 0 8px;
+      }
+      .main-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 25px;
+      background: rgba(0, 0, 0, 0.5); 
+      }
+      .left-part, form {
+      padding: 25px;
+      }
+      .left-part {
+      text-align: center;
+      }
+      .fa-graduation-cap {
+      font-size: 72px;
+      }
+      form {
+      background: rgba(0, 0, 0, 0.7); 
+      }
+      .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      }
+      .info {
+      display: flex;
+      flex-direction: column;
+      }
+      input, select {
+      padding: 5px;
+      margin-bottom: 30px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #eee;
+      }
+      input::placeholder {
+      color: #eee;
+      }
+      option:focus {
+      border: none;
+      }
+      option {
+      background: black; 
+      border: none;
+      }
+      .checkbox input {
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+      }
+      .checkbox a {
+      color: #26a9e0;
+      }
+      .checkbox a:hover {
+      color: #85d6de;
+      }
+      .btn-item, button {
+      padding: 10px 5px;
+      margin-top: 20px;
+      border-radius: 5px; 
+      border: none;
+      background: #26a9e0; 
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      color: #fff;
+      }
+      .btn-item {
+      display: inline-block;
+      margin: 20px 5px 0;
+      }
+      button {
+      width: 100%;
+      }
+      button:hover, .btn-item:hover {
+      background: #85d6de;
+      }
+      @media (min-width: 568px) {
+      html, body {
+      height: 100%;
+      }
+      .main-block {
+      flex-direction: row;
+      height: calc(100% - 50px);
+      }
+      .left-part, form {
+      flex: 1;
+      height: auto;
+      }
+.screen{
+  height: 100%;
+  width: 100%;
+}}
+
+.sidenav {
+  height: 100%;
+  width: 18%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav .anchor {
+  
+  padding: 24px 8px 9px 40px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #DAC272;
+}
+
+.sidenav .logo{
+  height: 30%;
+  width: 100%;
+}
+
+.mayn{
+  left:18%;
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+.welcome_Page{
+    background-image: url('{% static "hotel.jpg" %}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; height: 100%;
+    left:18%;
+  position: fixed;
+    /* Additional styles */
+    width: 100%;
+    height: 100%;
+    }
+
+    
+    .welcome_Page .cont{
+      background-color: rgba(0, 0, 0, 0.8);
+      padding-top: 1px;
+      padding-bottom: 1px;
+      margin-top: 20%;
+        width: 23%;
+        padding: 0px auto;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        margin-left: 30%;
+    }
+/* Styling for the main content area */
+
+table.table-bordered > thead > tr > th {
+		border:1px solid #DAC272;
+		}
+		table.table-bordered > tbody > tr > td {
+		border:1px solid #DAC272;
+		}
+
+
+</style>
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+  {% block content %}
+  <div class="screen">
+<div class="sidenav">
+  {% load static %}
+  <a  href="{% url "index" %}">
+  <img class="logo" src="{% static '/logo.jpeg' %}" alt="Hotel Logo"></a>
+  <a class="anchor" href="{% url "booking" %}"><i class="fa fa-home"></i>  Book a Room</a>
+  <a class="anchor" href="{% url "manageBooking" %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>  Manage Bookings</a>
+  <a class="anchor" href="{% url "allBookings" %}"><i class="fa fa-bars" aria-hidden="true"></i>  Bookings</a>
+  <a class="anchor" href="{% url "cancellation" %}"><i class="fa fa-ban" aria-hidden="true"></i>  Cancellation</a>
+</div>
+
+<div class="mayn">
+  {% block body %}
+  {% endblock %}</div>
+</div>
+  {% endblock %}
+</body>
+</html>

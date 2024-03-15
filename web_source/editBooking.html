@@ -1,0 +1,16 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<form action="{% url 'modified-data' %}" method="post">
+    {% csrf_token %}
+    <label for="name">Room No.:</label><br>
+    <input type="text" id="RoomN" name="Room Number", placeholder="{{a}}"><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br>
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message"></textarea><br>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock  %}

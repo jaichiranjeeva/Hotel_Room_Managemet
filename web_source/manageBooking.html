@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block body %}
+
+<form action="{% url "editBooking" %}" method="post" style="width: 70%;margin-left: 5%;margin-top: 4%;" >
+    {% csrf_token %}
+    <div class="title">
+      <!-- <i class="fas fa-pencil-alt"></i>  -->
+      <h2>Enter Booking Details</h2>
+    </div>
+    <div class="info">
+        <label for="RoomN">Room No.:</label>
+      <input class="fname" type="text" name="RoomN" placeholder="123">
+      <label for="phone">Phone Number:</label>
+      <input type="text" name="phone" placeholder="9876543210">
+      <label for="Date">Check-In Date:</label>
+      <input type="text" name="Check-In Date" placeholder="YYYY-MM-DD">
+      <label for="Time">Check-In Time:</label>
+      <input type="text" name="Check-In Time" placeholder="HH:MM">
+    </div>
+    <button type="submit" value="submit">Verify</button>
+  </form>
+  
+{% endblock  %}
