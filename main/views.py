@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -10,6 +11,9 @@ from django.utils import timezone
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
+from pymongo.collection import Collection
+from pymongo.database import Database
+
 from django.shortcuts import get_object_or_404
 import pymongo
 #connect_string = 'mongodb+srv://<username>:<password>@<atlas cluster>/<myFirstDatabase>?retryWrites=true&w=majority' 
@@ -18,12 +22,13 @@ from django.conf import settings
 # my_client = pymongo.MongoClient("mongodb://localhost:27017")
 
 # First define the database name
-uri = "mongodb+srv://jaichiranjeeva:lmYlT6potgi5KvW9@hotelroommanagement.vtffr85.mongodb.net/?retryWrites=true&w=majority&appName=HotelRoomManagement"
+uri = os.environ.get("mongodb+srv://jaichiranjeeva:lmYlT6potgi5KvW9@hotelroommanagement.vtffr85.mongodb.net/?retryWrites=true&w=majority&appName=HotelRoomManagement")
 # Create a new client and connect to the server
 my_client = MongoClient(uri, server_api=ServerApi('1'))
 
 # Now get/create collection name (remember that you will see the database in your mongodb cluster only after you create a collection
-
+dbname = my_client.get_database('Hotel_Room_Management')
+collection_name = dbname.get_collection("currentBookings")
 
 # Create your views here.
 def index(request):
@@ -49,8 +54,6 @@ def saveEdits(request):
         date = request.POST.get('Check-In Date')
         time = request.POST.get('Check-In Time')
 
-        dbname = my_client['Hotel_Room_Management']
-        collection_name = dbname["currentBookings"]
         myquery = { "Room_No": old["RoomN"]  }
         newvalues = { "$set": { "Room_No": RoomN } }
 
@@ -63,8 +66,6 @@ def editBooking(request):
         date = request.POST.get('Check-In Date')
         time = request.POST.get('Check-In Time')
 
-        dbname = my_client['Hotel_Room_Management']
-        collection_name = dbname["currentBookings"]
         if(datetime.strptime(date+'-'+time, '%Y-%m-%d-%H:%M')<datetime.now()):
             return HttpResponse("Old Records Cant be Modified")
         x=collection_name.find_one({"Room_No":RoomN,"Phone":phone,"From_Date":date,"From_Time":time})
@@ -87,8 +88,6 @@ def editBooking(request):
 def manageBooking(request):
     return  render(request,"manageBooking.html",{})
 def allBookings(request):
-    dbname = my_client['Hotel_Room_Management']
-    collection_name = dbname["currentBookings"]
     l=[]
     for doc in collection_name.find():
         y=list(doc.values())
@@ -97,8 +96,6 @@ def allBookings(request):
     return render(request,"allBookings.html",context)
 
 def cancellation(request):
-    dbname = my_client['Hotel_Room_Management']
-    collection_name = dbname["currentBookings"]
     l=[]
     for doc in collection_name.find():
         y=list(doc.values())
@@ -113,12 +110,11 @@ def cancellation(request):
     return render(request,'cancellation.html',context)
 
 def deleteReservation(request,id):
-    dbname = my_client['Hotel_Room_Management']
-    collection_name = dbname["currentBookings"]
     collection_name.delete_one({"_id":ObjectId(id)})
     return cancellation(request)
 
 
+#for sendind emails on booking
 def send(request):
     subject = request.POST['sub']
     message = request.POST['msg']

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-d8wt0m10@si_)42dt&5jup_fa3(-j1m_x@i+@8zyc88b1b*2)&
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS =[]
+CSRF_TRUSTED_ORIGINS =['http://hotel-room-management.azurewebsites.net/']
 
 
 # Application definition
@@ -118,6 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
