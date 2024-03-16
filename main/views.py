@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.conf import settings
-from bson.objectid import ObjectId
 from datetime import timedelta,date
 from datetime import datetime
 from django.utils import timezone
