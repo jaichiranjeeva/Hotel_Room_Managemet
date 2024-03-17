@@ -21,7 +21,7 @@ from django.conf import settings
 # my_client = pymongo.MongoClient("mongodb://localhost:27017")
 
 # First define the database name
-uri = os.environ.get("mongodb+srv://jaichiranjeeva:lmYlT6potgi5KvW9@hotelroommanagement.vtffr85.mongodb.net/?retryWrites=true&w=majority&appName=HotelRoomManagement")
+uri = os.environ.get("mongodb+srv://jaichiranjeeva:lmYlT6potgi5KvW9@hotelroommanagement.vtffr85.mongodb.net/?retryWrites=false&w=majority&appName=HotelRoomManagement&ssl=true&ssl_cert_reqs=CERT_NONE")
 # Create a new client and connect to the server
 my_client = MongoClient(uri, server_api=ServerApi('1'))
 
